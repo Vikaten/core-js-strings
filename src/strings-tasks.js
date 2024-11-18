@@ -190,8 +190,13 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let res = 0;
+  if (str !== undefined && str !== null) {
+    const a = str.split('');
+    res = a.reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  }
+  return res;
 }
 
 /**
@@ -302,17 +307,16 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
-  // const vowels = ['a', 'e', 'i', 'o', 'u'];
-  // let counter = 0;
-  // const chars = str.toLowerCase();
-  // for (let i = 0; i < chars.length; i += 1) {
-  //   if (vowels.includes(chars[i])) {
-  //     counter += 1;
-  //   }
-  // }
-  // return counter;
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+  let counter = 0;
+  const chars = str.toLowerCase();
+  for (let i = 0; i < chars.length; i += 1) {
+    if (vowels.includes(chars[i])) {
+      counter += 1;
+    }
+  }
+  return counter;
 }
 
 /**
@@ -329,7 +333,12 @@ function countVowels(/* str */) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  return str === str.split('').reverse().join('');
+  const str2 = str.toLowerCase().replace(/[^a-z0123456789]+/g, '');
+  const reversedStr = str2.split('').reverse().join('');
+  if (str2 === reversedStr) {
+    return true;
+  }
+  return false;
 }
 
 /**
